@@ -27,10 +27,10 @@ public class MiddleMan implements Runnable {
             if (items == Producer.STOP_VALUE) {
                 break;
             }
-            System.out.println("middle" + items);
+//            System.out.println("middleman : " + items);
 
         }
-        System.out.println("shtudown");
+        System.out.println("middleman shtudown");
 
 
     }
