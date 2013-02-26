@@ -21,17 +21,17 @@ public class MiddleMan implements Runnable {
     @Override
     public void run() {
 
-        while(true){
+        while (true) {
             int items = takebuffer.take();
             putbuffer.put(items);
-            System.out.println("middle" + items);
-            if(items == Producer.STOP_VALUE){
+            if (items == Producer.STOP_VALUE) {
                 break;
             }
+            System.out.println("middle" + items);
+
         }
         System.out.println("shtudown");
-       
-        
-        }
-    
+
+
+    }
 }
