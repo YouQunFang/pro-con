@@ -29,6 +29,7 @@ public class MiddleMan implements Runnable {
                 break;
             }
         }
+        System.out.println("shtudown");
        
         
         }
