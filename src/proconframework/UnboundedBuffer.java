@@ -11,13 +11,14 @@ import java.util.Queue;
  *
  * @author youqunfang
  */
-public class UnboundedBuffer {
+public class UnboundedBuffer implements Buffer{
 
     
     private Queue<Integer> buffer = new LinkedList<>();
 
     
-public synchronized void put(int element) {
+    @Override
+    public synchronized void put(int element) {
        
         buffer.add(element);
         if (/*buffer.size() == capacity - 1*/buffer.size() == 1) {
@@ -25,6 +26,7 @@ public synchronized void put(int element) {
         }
     }
 
+    @Override
     public synchronized int take() {
         while (buffer.size() == 0) {
             try {
