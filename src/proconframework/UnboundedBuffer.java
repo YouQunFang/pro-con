@@ -13,31 +13,27 @@ import java.util.Queue;
  */
 public class UnboundedBuffer {
 
-    private int capacity;
+    
     private Queue<Integer> buffer = new LinkedList<>();
 
-    public UnboundedBuffer(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public synchronized void put(int element) {
-
+    
+public synchronized void put(int element) {
+       
         buffer.add(element);
-
+        if (/*buffer.size() == capacity - 1*/buffer.size() == 1) {
+            notifyAll();
+        }
     }
 
     public synchronized int take() {
-
+        while (buffer.size() == 0) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+            }
+        }
         int result = buffer.remove();
-
+        
         return result;
     }
 }
