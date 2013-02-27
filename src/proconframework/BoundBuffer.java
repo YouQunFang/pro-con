@@ -11,7 +11,7 @@ import java.util.Queue;
  *
  * @author youqunfang
  */
-public class BoundBuffer {
+public class BoundBuffer implements Buffer {
 
     private int capacity;
     private Queue<Integer> buffer = new LinkedList<>();
@@ -28,6 +28,7 @@ public class BoundBuffer {
         this.capacity = capacity;
     }
 
+    @Override
     public synchronized void put(int element) {
         while (buffer.size() >= capacity) {
             try {
@@ -41,6 +42,7 @@ public class BoundBuffer {
         }
     }
 
+    @Override
     public synchronized int take() {
         while (buffer.size() == 0) {
             try {
